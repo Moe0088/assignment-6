@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class StreamClass {
+public class Stream {
 
 	public static void yearlySalesCreateReport(String models, List<CarSalesRecord> amount) {
 		Map<Integer, Integer> yearlySalesReport = amount.stream()
@@ -22,31 +22,30 @@ public class StreamClass {
 		}
 	}
 
-	public static void bestSales(List<CarSalesRecord> amount, String models) {
+	public static void bestSales(String models, List<CarSalesRecord> amount) {
 		Optional<CarSalesRecord> maxSales = amount.stream()
-				.collect(Collectors.maxBy(Comparator.comparingInt(CarSalesRecord -> CarSalesRecord.getSales())));
+				.collect(Collectors.maxBy
+			(Comparator.comparingInt(CarSalesRecord -> CarSalesRecord.getSales())));
 		if (maxSales.isPresent()) {
 			CarSalesRecord maxSalesRecord = maxSales.get();
 			YearMonth maxSalesDate = maxSalesRecord.getDate();
-			System.out.println("Best Month for " + models + "was: " + maxSalesDate);
+			System.out.println("Best Month for " + models + " was: " + maxSalesDate);
 		} else {
 			System.out.println("No sales records found for " + models);
 		}
 
 	}
 
-	public static void worstSales(List<CarSalesRecord> amount, String models) {
+	public static void worstSales(String models, List<CarSalesRecord> amount) {
 		Optional<CarSalesRecord> minSales = amount.stream()
 				.collect(Collectors.minBy(Comparator.comparingInt(CarSalesRecord -> CarSalesRecord.getSales())));
 		if (minSales.isPresent()) {
 			CarSalesRecord minSalesRecord = minSales.get();
 			YearMonth minSalesDate = minSalesRecord.getDate();
-			System.out.println("Worst Month for " + models + "was " + minSalesDate);
+			System.out.println("Worst Month for " + models + " was: " + minSalesDate);
 		} else {
 			System.out.println("No sales records found for " + models);
 		}
 	}
 
 }
-//
-//	yearlySalesReport.forEach(a , z) -> System.out.println(a+ " -> "+z));

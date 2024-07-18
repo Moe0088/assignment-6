@@ -6,7 +6,6 @@ public class CarSalesRecord {
 	private YearMonth date;
 	private Integer sales;
 
-
 	public CarSalesRecord(YearMonth date, Integer sales) {
 		super();
 		this.date = date;
